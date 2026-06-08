@@ -14,7 +14,7 @@ export const databaseConfig: TypeOrmModuleAsyncOptions = {
 
     autoLoadEntities: true,
     retryAttempts: 5,
-    synchronize: false,
+    synchronize: process.env.NODE_ENV == 'DEVELOPMENT' ? true : false,
   }),
 
   inject: [ConfigService],
