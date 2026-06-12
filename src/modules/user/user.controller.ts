@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { UserService } from './user.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { RegisterDto } from './dto/register.dto';
+import { AddEmployeeDto } from './dto/addEmployee.dto';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
@@ -10,8 +10,8 @@ export class UserController {
     private readonly eventEmitter: EventEmitter2,
   ) {}
 
-  @Post('/register')
-  regitserUser(@Body() registerDto: RegisterDto) {
-    return this.userService.register(registerDto);
+  @Post('addEmployee')
+  addEmployee(@Body() addEmployeeDto: AddEmployeeDto) {
+    return this.userService.addEmployee(addEmployeeDto);
   }
 }

@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateCompanyDto } from './dto/create-company.dto';
-import { Repository } from 'typeorm';
-import { CompanyEntity } from 'src/modules/company/entities/company.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CompanyEntity } from 'src/modules/company/entities/company.entity';
+import { Repository } from 'typeorm';
+import { CreateCompanyDto } from './dto/create-company.dto';
 import { companyCreateEvent } from './events/company.events';
 
 @Injectable()
@@ -26,7 +26,10 @@ export class CompanyService {
     const company = this.companyRepo.create(createCompanyDto);
     const saved = await this.companyRepo.save(company);
 
-    this.evnetEmitter.emit('company.created', new companyCreateEvent(saved.id));
+    this.evnetEmitter.emit(
+      'company.created',
+      new companyCreateEvent(saved, createCompanyDto.password),
+    );
 
     return {
       id: saved.id,

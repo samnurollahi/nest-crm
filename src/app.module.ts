@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseConfig } from './config/database.config';
+import { envValidationSchema } from './config/env-schema';
+import { AuthModule } from './modules/auth/auth.module';
 import { CompanyModule } from './modules/company/company.module';
-import { EventEmitterModule } from '@nestjs/event-emitter';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
@@ -15,6 +17,7 @@ import { UserModule } from './modules/user/user.module';
       load: [configuration],
       cache: true,
       isGlobal: true,
+      validationSchema: envValidationSchema,
     }),
     TypeOrmModule.forRootAsync(databaseConfig),
     EventEmitterModule.forRoot({
@@ -22,6 +25,7 @@ import { UserModule } from './modules/user/user.module';
     }),
     CompanyModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

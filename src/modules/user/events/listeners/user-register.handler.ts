@@ -4,7 +4,7 @@ import { RegisterUserEvnet } from '../user.envent';
 
 @Injectable()
 export class UserRegisterHandler {
-  @OnEvent('user.register')
+  @OnEvent('user.register', { async: true })
   handle(event: RegisterUserEvnet) {
     //! send welcome email
   }

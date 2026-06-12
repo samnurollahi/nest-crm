@@ -21,4 +21,10 @@ export class CreateCompanyDto {
   @IsString()
   @Length(0, 1_000)
   description?: string;
+
+  @ApiProperty({})
+  @IsString()
+  @Length(0, 255)
+  @IsNotEmpty()
+  password: string;
 }
