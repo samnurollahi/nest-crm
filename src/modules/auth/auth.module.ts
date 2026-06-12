@@ -14,7 +14,6 @@ import { AuthService } from './auth.service';
         return {
           secret: config.get('JWT_SECRET'),
           signOptions: { expiresIn: '24h' },
-          global: true,
         };
       },
     }),

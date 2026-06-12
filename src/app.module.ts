@@ -10,6 +10,7 @@ import { envValidationSchema } from './config/env-schema';
 import { AuthModule } from './modules/auth/auth.module';
 import { CompanyModule } from './modules/company/company.module';
 import { UserModule } from './modules/user/user.module';
+import { LeadsModule } from './modules/leads/leads.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserModule } from './modules/user/user.module';
     CompanyModule,
     UserModule,
     AuthModule,
+    LeadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
+import type { UserPayload } from 'src/types/user-payload';
 import { FindOptionsSelect, Repository } from 'typeorm';
 import { AddEmployeeDto } from './dto/addEmployee.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -65,7 +66,16 @@ export class UserService {
     });
   }
 
-  async addEmployee(addEmployeeDto: AddEmployeeDto) {
-    const user = await this.register(addEmployeeDto);
+  async addEmployee(addEmployeeDto: AddEmployeeDto, user: UserPayload) {
+    const company = (await this.findUser(user.user.email, false, true))
+      ?.company;
+    const newUser = await this.register({
+      ...addEmployeeDto,
+      companyId: company?.id,
+    });
+
+    return {
+      newUser,
+    };
   }
 }

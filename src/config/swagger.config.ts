@@ -1,8 +1,8 @@
 import { INestApplication, Logger } from '@nestjs/common';
 import {
   DocumentBuilder,
-  SwaggerModule,
   SwaggerDocumentOptions,
+  SwaggerModule,
 } from '@nestjs/swagger';
 
 export class SwaggerConfig {
@@ -40,27 +40,27 @@ export class SwaggerConfig {
 
         // .setLicense('MIT', 'https://opensource.org/licenses/MIT')
 
-        .addBearerAuth(
-          {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT',
-            name: 'JWT',
-            description: 'Enter your JWT token',
-            in: 'header',
-          },
-          'JWT-auth',
-        )
+        // .addBearerAuth(
+        //   {
+        //     type: 'http',
+        //     scheme: 'bearer',
+        //     bearerFormat: 'JWT',
+        //     name: 'JWT',
+        //     description: 'Enter your JWT token',
+        //     in: 'header',
+        //   },
+        //   'JWT-auth',
+        // )
 
-        .addApiKey(
-          {
-            type: 'apiKey',
-            name: 'X-API-Key',
-            in: 'header',
-            description: 'API Key for external services',
-          },
-          'api-key',
-        )
+        // .addApiKey(
+        //   {
+        //     type: 'apiKey',
+        //     name: 'X-API-Key',
+        //     in: 'header',
+        //     description: 'API Key for external services',
+        //   },
+        //   'api-key',
+        // )
 
         // .addTag('Users', 'User management endpoints', {
         //   description: 'Find more information about user operations',
@@ -70,7 +70,19 @@ export class SwaggerConfig {
         // .addTag('Auth', 'Authentication endpoints')
         // .addTag('Admin', 'Admin only operations (requires admin role)')
 
-        .setBasePath('/api/v1')
+        .addBearerAuth(
+          {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+            name: 'JWT',
+            description: 'لطفا توکن JWT خود را وارد کنید',
+            in: 'header',
+          },
+          'JWT',
+        )
+
+      // .setBasePath('/api/v1')
     );
   }
 
