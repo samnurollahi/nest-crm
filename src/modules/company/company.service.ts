@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CompanyEntity } from 'src/modules/company/entities/company.entity';
-import { Repository } from 'typeorm';
+import { FindOptionsSelect, Repository } from 'typeorm';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { companyCreateEvent } from './events/company.events';
 
@@ -37,5 +37,23 @@ export class CompanyService {
       email: saved.email,
       createdAt: saved.createdAt,
     };
+  }
+
+  async findCompany(id: string) {
+    const select: FindOptionsSelect<CompanyEntity> = {
+      email: true,
+      id: true,
+      createdAt: true,
+      deletedAt: true,
+      name: true,
+      updatedAt: true,
+      description: true,
+    };
+    return await this.companyRepo.findOne({
+      where: {
+        id,
+      },
+      select,
+    });
   }
 }
