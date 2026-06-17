@@ -78,4 +78,19 @@ export class UserService {
       newUser,
     };
   }
+
+  async removeEmployee(id: string, user: UserPayload) {
+    const companyId = (await this.findUser(user.user.email, false, true))
+      ?.company.id;
+    const target = await this.findUser(user.user.email, false, true);
+
+    if (companyId && target && companyId == target?.company.id) {
+      await this.userRepo.softDelete({ id });
+      return {
+        msg: 'ok',
+      };
+    } else {
+      throw new BadRequestException();
+    }
+  }
 }

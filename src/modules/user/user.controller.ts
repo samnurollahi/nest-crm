@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/common/decorators/role.decorator';
@@ -19,7 +26,7 @@ export class UserController {
   ) {}
 
   @Roles(UserRole.OWNER, UserRole.MANAGER)
-  @Post('addEmployee')
+  @Post('')
   @ApiBearerAuth('JWT')
   @ApiOperation({ summary: 'اضافه کردن کارمند' })
   addEmployee(
@@ -27,5 +34,12 @@ export class UserController {
     @User() user: UserPayload,
   ) {
     return this.userService.addEmployee(addEmployeeDto, user);
+  }
+
+  @Delete(':id')
+  @Roles(UserRole.OWNER, UserRole.MANAGER)
+  @ApiBearerAuth('JWT')
+  removeEmployee(@Param('id') id: string, @User() user: UserPayload) {
+    return this.userService.removeEmployee(id, user);
   }
 }
