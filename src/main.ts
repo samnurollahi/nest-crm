@@ -10,21 +10,24 @@ import { SwaggerConfig } from './config/swagger.config';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // express config
+  //* express config
   app.use(express.json({ limit: '1mb' }));
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
   app.use(helmet());
 
+  //* validation
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
     }),
   );
+
+  //* ResponseInterceptor
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  //? swagger config
+  //* swagger config
   const swaggerConfig = SwaggerConfig.getInstance(app);
   process.env.NODE_ENV == 'development' && swaggerConfig.setup();
 
