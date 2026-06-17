@@ -11,6 +11,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CompanyModule } from './modules/company/company.module';
 import { UserModule } from './modules/user/user.module';
 import { LeadsModule } from './modules/leads/leads.module';
+import { DealsModule } from './modules/deals/deals.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { LeadsModule } from './modules/leads/leads.module';
     UserModule,
     AuthModule,
     LeadsModule,
+    DealsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
