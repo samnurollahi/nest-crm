@@ -71,7 +71,7 @@ export class LeadsService {
       });
       saved = await this.leadRepo.save(created);
     } catch (error) {
-      if (error && error.code == '23505') {
+      if (error && error['code'] == '23505') {
         throw new BadRequestException('leads already exists');
       }
     }

@@ -15,11 +15,11 @@ const passwordTransformer: ValueTransformer = {
 @Entity()
 export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
-  name: string;
+  name!: string;
 
   @Index({ unique: true })
   @Column({ type: 'varchar', nullable: false })
-  email: string;
+  email!: string;
 
   @Column({
     type: 'varchar',
@@ -27,15 +27,15 @@ export class UserEntity extends BaseEntity {
     transformer: passwordTransformer,
     select: false,
   })
-  password: string;
+  password!: string;
 
   @Column({
     type: 'enum',
     enum: UserRole,
     default: UserRole.STAFF,
   })
-  role: UserRole;
+  role!: UserRole;
 
   @ManyToOne(() => CompanyEntity)
-  company: CompanyEntity;
+  company!: CompanyEntity;
 }

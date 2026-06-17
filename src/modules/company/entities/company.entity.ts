@@ -5,12 +5,12 @@ import { Column, Entity, Index } from 'typeorm';
 export class CompanyEntity extends BaseEntity {
   @Index({ unique: true })
   @Column({ type: 'varchar', nullable: false })
-  name: string;
+  name!: string;
 
   @Index({ unique: true })
   @Column({ type: 'varchar', nullable: false })
-  email: string;
+  email!: string;
 
   @Column({ type: 'text', default: '' })
-  description: string;
+  description!: string;
 }
