@@ -6,15 +6,15 @@ import { Column, Entity, Index, ManyToOne } from 'typeorm';
 @Entity()
 export class LeadEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
-  name: string;
+  name!: string;
 
   @Index({ unique: true })
   @Column({ type: 'varchar', length: 255 })
-  email: string;
+  email!: string;
 
   @Column({ type: 'enum', enum: LeadStatus, default: LeadStatus.NEW })
-  status: LeadStatus;
+  status!: LeadStatus;
 
   @ManyToOne(() => CompanyEntity)
-  company: CompanyEntity;
+  company!: CompanyEntity;
 }

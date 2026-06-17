@@ -26,7 +26,7 @@ export class UserService {
       });
       saved = await this.userRepo.save(newUser);
     } catch (error) {
-      if (error && error.code == '23505') {
+      if (error && error['code'] == '23505') {
         throw new BadRequestException('Company already exists');
       }
     }
