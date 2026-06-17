@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import * as express from 'express';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { SwaggerConfig } from './config/swagger.config';
 
 async function bootstrap() {
@@ -21,6 +22,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   //? swagger config
   const swaggerConfig = SwaggerConfig.getInstance(app);

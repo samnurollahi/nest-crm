@@ -88,8 +88,6 @@ export class LeadsService {
       { status: changeStatusDto.status },
     );
 
-    return {
-      msg: 'ok',
-    };
+    return {};
   }
 }

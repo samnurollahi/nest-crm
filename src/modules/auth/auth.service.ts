@@ -22,9 +22,6 @@ export class AuthService {
       userId: user.id,
       user: { email: user.email, role: user.role },
     });
-    return {
-      token,
-      msg: 'login',
-    };
+    return { token };
   }
 }

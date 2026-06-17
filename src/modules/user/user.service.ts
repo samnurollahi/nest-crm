@@ -86,9 +86,7 @@ export class UserService {
 
     if (companyId && target && companyId == target?.company.id) {
       await this.userRepo.softDelete({ id });
-      return {
-        msg: 'ok',
-      };
+      return {};
     } else {
       throw new BadRequestException();
     }
