@@ -6,7 +6,7 @@ export class CreateCompanyDto {
   @IsString()
   @Length(0, 255)
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @ApiProperty({
     example: 'sam.nurollahi@gmail.com',
@@ -15,7 +15,7 @@ export class CreateCompanyDto {
   @Length(0, 255)
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  email!: string;
 
   @ApiProperty({})
   @IsString()
@@ -26,5 +26,5 @@ export class CreateCompanyDto {
   @IsString()
   @Length(0, 255)
   @IsNotEmpty()
-  password: string;
+  password!: string;
 }

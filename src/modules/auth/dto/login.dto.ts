@@ -8,10 +8,10 @@ export class LoginDto {
   @ApiProperty({
     example: 'sam.nurollahi@gmail.com',
   })
-  email: string;
+  email!: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  password: string;
+  password!: string;
 }

@@ -6,5 +6,5 @@ export class ChangeStatusDto {
   @ApiProperty({ enum: LeadStatus, default: LeadStatus.QUALIFIED })
   @IsString()
   @IsEnum(LeadStatus)
-  status: LeadStatus;
+  status!: LeadStatus;
 }

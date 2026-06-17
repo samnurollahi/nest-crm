@@ -7,18 +7,18 @@ export class CreateLeadsDto {
   @IsNotEmpty()
   @Length(0, 255)
   @ApiProperty({ example: 'nikjo' })
-  name: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
   @Length(0, 255)
   @IsEmail()
   @ApiProperty({ example: 'nikjo@gmail.com' })
-  email: string;
+  email!: string;
 
   @IsString()
   @IsNotEmpty()
   @IsEnum(LeadStatus)
   @ApiProperty({ example: LeadStatus.NEW })
-  status: LeadStatus;
+  status!: LeadStatus;
 }
