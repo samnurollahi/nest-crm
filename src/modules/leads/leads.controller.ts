@@ -1,3 +1,4 @@
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import {
   Body,
   Controller,
@@ -9,6 +10,7 @@ import {
   Post,
   Query,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { Roles } from 'src/common/decorators/role.decorator';
@@ -38,6 +40,7 @@ export class LeadsController {
   @ApiQuery({ enum: LeadStatus, name: 'status' })
   @ApiQuery({ name: 'page', default: 1 })
   @Roles(UserRole.OWNER, UserRole.MANAGER, UserRole.STAFF)
+  @UseInterceptors(CacheInterceptor)
   getAll(
     @User() user: UserPayload,
     @Query('page', ParseIntPipe, new DefaultValuePipe(1)) page: number,
@@ -49,6 +52,7 @@ export class LeadsController {
   @Patch(':id/status')
   @ApiParam({ name: 'id', description: 'id of lead' })
   @Roles(UserRole.OWNER, UserRole.MANAGER, UserRole.STAFF)
+  @UseInterceptors(CacheInterceptor)
   changeStatus(
     @Body() cahngeStatusDto: ChangeStatusDto,
     @Param('id') leadId: string,
