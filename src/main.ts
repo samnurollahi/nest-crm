@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import compression from 'compression';
 import * as express from 'express';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
@@ -14,6 +15,10 @@ async function bootstrap() {
   app.use(express.json({ limit: '1mb' }));
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
+  //* gzip - response
+  app.use(compression());
+
+  //* for header
   app.use(helmet());
 
   //* validation
