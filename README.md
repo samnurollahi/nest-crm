@@ -2,8 +2,6 @@
 
 A simple CRM backend built with **NestJS**, **TypeORM**, and **PostgreSQL** to practice backend architecture, authentication, authorization, events, caching, security, and scalable project structure.
 
-## Features
-
 ### Authentication & Authorization
 
 - JWT Authentication
@@ -50,44 +48,9 @@ A simple CRM backend built with **NestJS**, **TypeORM**, and **PostgreSQL** to p
 - Environment Variable Validation
 - Password Hashing (bcrypt)
 
-### Infrastructure
-
-- PostgreSQL
-- TypeORM
-- Redis Ready Structure
-- Cache Module Integration
-
 ### API Documentation
 
 - Swagger Integration
-
----
-
-## Project Structure
-
-```text
-src
-├── common
-│   ├── decorators
-│   ├── filters
-│   ├── guards
-│   ├── interceptors
-│   └── pipes
-│
-├── config
-│
-├── infrastructure
-│   ├── database
-│   └── redis
-│
-├── modules
-│   ├── auth
-│   ├── company
-│   ├── leads
-│   └── user
-│
-└── types
-```
 
 ---
 
@@ -99,7 +62,6 @@ src
 - TypeORM
 - JWT
 - Swagger
-- Redis (Infrastructure Ready)
 - EventEmitter2
 - Cache Manager
 
@@ -121,13 +83,13 @@ Create a `.env` file:
 PORT=3000
 NODE_ENV=development
 
-DATABASE_NAME=crm
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=root
+DATABASE_NAME=
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
 
-JWT_SECRET=your_secret_key
+JWT_SECRET=
 ```
 
 ### Run Project
@@ -139,7 +101,7 @@ npm run start:dev
 ### Swagger
 
 ```text
-http://localhost:3000/api
+http://localhost:3000/api/docs
 ```
 
 ---
@@ -156,20 +118,6 @@ This project was built to practice:
 - Modular Design
 - API Security
 - Backend Best Practices
-
----
-
-## Future Improvements
-
-- Refresh Token Authentication
-- Redis Caching
-- Audit Logging
-- Docker Support
-- WebSocket Notifications
-- GraphQL API
-- Unit & Integration Testing
-- Multi-Tenant Enhancements
-- Advanced Lead Pipelines
 
 ---
 
